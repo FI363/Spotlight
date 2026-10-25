@@ -1,0 +1,1075 @@
+/* ==================================================
+   City Events Library Searcher (Card Catalog Archive)
+   ================================================== */
+
+.events-library-section {
+  width: min(100%, 1184px);
+  margin: 0 auto 96px;
+  padding: 0 32px;
+  position: relative;
+  z-index: 5;
+}
+
+/* Master Catalog Card (matches .events-lineup-card aesthetic) */
+.library-card-catalog {
+  background: #fbfaf7;
+  border: 1px solid rgb(38 35 30 / 14%);
+  border-radius: 28px;
+  box-shadow: 0 20px 50px rgb(38 35 30 / 8%);
+  padding: clamp(28px, 4vw, 52px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative wood/paper subtle grain overlay */
+.library-card-catalog::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(223, 88, 49, 0.03) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------
+   Brass Drawer Label & Header
+   -------------------------------------------------- */
+
+.library-catalog-header {
+  margin-bottom: 36px;
+}
+
+.library-brass-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #d4af37 0%, #aa7c11 50%, #e5c158 100%);
+  color: #2b1f04;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.6), 0 2px 6px rgba(0, 0, 0, 0.12);
+  margin-bottom: 22px;
+  border: 1px solid #8f6709;
+}
+
+.library-screw {
+  font-size: 0.9rem;
+  color: #553d06;
+  opacity: 0.8;
+  line-height: 1;
+}
+
+.library-header-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.library-title-group {
+  max-width: 720px;
+}
+
+.library-eyebrow {
+  display: block;
+  color: #8b5265;
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.16em;
+  margin-bottom: 8px;
+}
+
+.library-title {
+  margin: 0 0 12px;
+  color: #171614;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 1.05;
+}
+
+.library-subtitle {
+  margin: 0;
+  color: #625f59;
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+/* Live Stacks Stats Badge */
+.library-stats-badge {
+  background: #eeece7;
+  border: 1px solid rgb(38 35 30 / 12%);
+  border-radius: 18px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.library-stats-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.library-pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #df5831;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(223, 88, 49, 0.6);
+  animation: library-pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@keyframes library-pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(223, 88, 49, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 8px rgba(223, 88, 49, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(223, 88, 49, 0);
+  }
+}
+
+.library-stats-count {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.95rem;
+  font-weight: 750;
+  color: #171614;
+  letter-spacing: 0.05em;
+}
+
+.library-stats-sub {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #8b5265;
+}
+
+.library-saved-pill {
+  margin-top: 6px;
+  background: #171614;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+}
+
+/* --------------------------------------------------
+   Tactile Search Console & Filters
+   -------------------------------------------------- */
+
+.library-search-console {
+  background: #f3f1ec;
+  border: 1px solid rgb(38 35 30 / 12%);
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 36px;
+}
+
+/* Search Bar Input */
+.library-search-bar-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid rgb(38 35 30 / 14%);
+  border-radius: 14px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03);
+  margin-bottom: 18px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.library-search-bar-wrap:focus-within {
+  border-color: #df5831;
+  box-shadow: 0 0 0 3px rgba(223, 88, 49, 0.18);
+}
+
+.library-search-icon {
+  padding-left: 18px;
+  color: #8b857d;
+  display: flex;
+  align-items: center;
+}
+
+.library-search-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 16px 14px;
+  font-size: 1.05rem;
+  color: #171614;
+  outline: none;
+  font-family: inherit;
+}
+
+.library-search-input::placeholder {
+  color: #8e8982;
+  font-size: 0.95rem;
+}
+
+.library-search-clear {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  color: #8e8982;
+  cursor: pointer;
+  padding: 8px 18px;
+  transition: color 0.2s;
+}
+
+.library-search-clear:hover {
+  color: #171614;
+}
+
+/* Classification Drawer Tabs (Dewey System) */
+.library-drawers-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  margin-bottom: 18px;
+  scrollbar-width: none;
+}
+
+.library-drawers-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.library-tab-btn {
+  background: #e7e4dc;
+  border: 1px solid transparent;
+  color: #555048;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 9px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.library-tab-btn .tab-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.72rem;
+  color: #8b5265;
+  background: rgba(139, 82, 101, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.library-tab-btn:hover {
+  background: #ded9cf;
+  color: #171614;
+}
+
+.library-tab-btn.is-active {
+  background: #171614;
+  color: #fff;
+}
+
+.library-tab-btn.is-active .tab-code {
+  color: #ffb885;
+  background: rgba(255, 184, 133, 0.18);
+}
+
+/* Secondary Filter Controls */
+.library-filters-bar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding-top: 14px;
+  border-top: 1px dashed #d5d1c8;
+}
+
+.library-filter-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.library-filter-label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #726d65;
+}
+
+.library-select {
+  background: #fff;
+  border: 1px solid rgb(38 35 30 / 14%);
+  border-radius: 8px;
+  padding: 7px 12px;
+  font-size: 0.82rem;
+  color: #211e1a;
+  cursor: pointer;
+  outline: none;
+  font-family: inherit;
+  font-weight: 600;
+}
+
+.library-select:focus {
+  border-color: #df5831;
+}
+
+.library-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #44403a;
+  cursor: pointer;
+  user-select: none;
+}
+
+.library-checkbox {
+  accent-color: #df5831;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+.library-reset-btn {
+  margin-left: auto;
+  background: none;
+  border: 1px solid #c8c3ba;
+  color: #625f59;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.04em;
+}
+
+.library-reset-btn:hover {
+  background: #171614;
+  color: #fff;
+  border-color: #171614;
+}
+
+/* --------------------------------------------------
+   Library Index Cards Grid
+   -------------------------------------------------- */
+
+.library-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+/* Individual Library Index Card */
+.library-index-card {
+  position: relative;
+  background: #fffefb;
+  border: 1px solid #e7e3dc;
+  border-radius: 16px;
+  padding: 24px 22px 20px;
+  box-shadow: 0 8px 24px rgba(38, 35, 30, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.25s, border-color 0.25s;
+  overflow: hidden;
+  text-align: left;
+}
+
+.library-index-card:hover,
+.library-index-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(38, 35, 30, 0.11);
+  border-color: #c9c3b8;
+  outline: none;
+}
+
+/* Authentic Red Manila Index Top Guideline */
+.index-card-redline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #df5831;
+}
+
+/* Header: Call Number & Status Stamp */
+.index-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed #e2ded5;
+}
+
+.index-call-number {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.call-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.82rem;
+  font-weight: 750;
+  color: #211e1a;
+  letter-spacing: 0.04em;
+}
+
+.call-class {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #8b5265;
+  letter-spacing: 0.08em;
+}
+
+/* Angled Rubber Ink Stamp */
+.index-status-stamp {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  padding: 3px 8px;
+  border: 1.5px solid currentColor;
+  border-radius: 4px;
+  transform: rotate(-3deg);
+  opacity: 0.88;
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* Card Body Content */
+.index-card-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.index-event-title {
+  margin: 0 0 6px;
+  color: #171614;
+  font-size: 1.35rem;
+  font-weight: 780;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+
+.index-event-subtitle {
+  margin: 0 0 16px;
+  color: #706c64;
+  font-size: 0.88rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+/* Metadata Ledger Lines */
+.index-card-ledger {
+  margin: 0 0 16px;
+  padding: 12px 0;
+  border-top: 1px solid #f0ede6;
+  border-bottom: 1px solid #f0ede6;
+  display: grid;
+  gap: 8px;
+  font-size: 0.78rem;
+}
+
+.ledger-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.ledger-row dt {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #8c877e;
+  letter-spacing: 0.1em;
+}
+
+.ledger-row dd {
+  margin: 0;
+  color: #33302a;
+}
+
+.ledger-row dd strong {
+  color: #171614;
+}
+
+.admission-tag {
+  color: #df5831 !important;
+  font-weight: 700;
+}
+
+.index-card-desc {
+  margin: 0 0 16px;
+  color: #55514a;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.index-tags-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+  padding-bottom: 14px;
+}
+
+.index-tag {
+  font-size: 0.7rem;
+  color: #6a665d;
+  background: #f4f2eb;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+/* Card Bottom: Punched Catalog Hole & Buttons */
+.index-card-footer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px dashed #e2ded5;
+}
+
+/* The iconic card catalog drawer rod hole */
+.index-card-rod-hole {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #eeece7;
+  border: 1px solid #d5cfc5;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.22);
+}
+
+.index-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.index-bookmark-btn {
+  background: #f4f2eb;
+  border: 1px solid #ded9ce;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #625f59;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s;
+}
+
+.index-bookmark-btn:hover {
+  background: #171614;
+  color: #fff;
+  border-color: #171614;
+}
+
+.index-bookmark-btn.is-saved {
+  background: #df5831;
+  color: #fff;
+  border-color: #df5831;
+}
+
+.index-view-slip-btn {
+  background: #171614;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 7px 14px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+  letter-spacing: 0.02em;
+}
+
+.index-view-slip-btn:hover {
+  background: #df5831;
+  transform: translateX(2px);
+}
+
+/* --------------------------------------------------
+   Empty Search State
+   -------------------------------------------------- */
+
+.library-empty-state {
+  text-align: center;
+  padding: 56px 24px;
+  background: #f5f3ee;
+  border: 2px dashed #ded9cf;
+  border-radius: 18px;
+}
+
+.library-empty-stamp {
+  display: inline-block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: #b91c1c;
+  border: 2px solid #b91c1c;
+  padding: 6px 14px;
+  border-radius: 6px;
+  transform: rotate(-2deg);
+  margin-bottom: 16px;
+}
+
+.library-empty-state h3 {
+  margin: 0 0 8px;
+  color: #171614;
+  font-size: 1.4rem;
+}
+
+.library-empty-state p {
+  margin: 0 0 20px;
+  color: #6a665d;
+  font-size: 0.95rem;
+}
+
+.library-empty-btn {
+  background: #171614;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.library-empty-btn:hover {
+  background: #df5831;
+}
+
+/* --------------------------------------------------
+   Catalog Footer
+   -------------------------------------------------- */
+
+.library-catalog-footer {
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid #e7e3dc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.library-footer-stamp {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.68rem;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  color: #8b5265;
+}
+
+.library-footer-text {
+  font-size: 0.8rem;
+  color: #807c74;
+}
+
+/* --------------------------------------------------
+   Circulation Slip Modal (Due Date Card)
+   -------------------------------------------------- */
+
+.circulation-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 17, 15, 0.65);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: slip-fade-in 0.2s ease-out;
+}
+
+@keyframes slip-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.circulation-slip-card {
+  position: relative;
+  background: #fffef9;
+  width: min(100%, 560px);
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px solid #ded9ce;
+  border-radius: 20px;
+  padding: 36px 32px 30px;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.35);
+  animation: slip-slide-up 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  border-top: 6px solid #df5831;
+}
+
+@keyframes slip-slide-up {
+  from { transform: translateY(20px) scale(0.96); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.slip-close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: #eeece7;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  color: #625f59;
+  transition: all 0.2s;
+}
+
+.slip-close-btn:hover {
+  background: #171614;
+  color: #fff;
+}
+
+.slip-header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px dashed #ded9cf;
+}
+
+.slip-subheading {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.68rem;
+  font-weight: 750;
+  letter-spacing: 0.15em;
+  color: #8b5265;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.slip-title {
+  margin: 0 0 6px;
+  color: #171614;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.slip-callout {
+  margin: 0;
+  color: #726e66;
+  font-size: 0.85rem;
+}
+
+.slip-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 24px;
+  background: #f9f8f4;
+  border: 1px solid #e7e3dc;
+  border-radius: 12px;
+  padding: 18px;
+}
+
+.slip-meta-block {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.slip-meta-block--full {
+  grid-column: 1 / -1;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #e2ded5;
+}
+
+.slip-meta-label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.62rem;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  color: #888277;
+}
+
+.slip-meta-val {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #171614;
+}
+
+.slip-meta-val.title-val {
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+}
+
+.slip-meta-val.monospace {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.slip-meta-val.highlight {
+  color: #df5831;
+}
+
+.slip-meta-sub {
+  font-size: 0.8rem;
+  color: #6a665d;
+}
+
+/* Stamped Due Date Table */
+.slip-stamps-table {
+  background: #fff;
+  border: 1px solid #d5cfc5;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 22px;
+}
+
+.slip-stamps-header {
+  display: grid;
+  grid-template-columns: 1.2fr 1.2fr 1fr;
+  padding: 8px 14px;
+  background: #eeece7;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.62rem;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+  color: #555048;
+  border-bottom: 1px solid #d5cfc5;
+}
+
+.slip-stamps-row {
+  display: grid;
+  grid-template-columns: 1.2fr 1.2fr 1fr;
+  align-items: center;
+  padding: 9px 14px;
+  border-bottom: 1px solid #f0ede6;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.75rem;
+}
+
+.stamped-date {
+  color: #6a665d;
+  font-weight: 700;
+}
+
+.stamped-id {
+  color: #8c877e;
+  font-size: 0.7rem;
+}
+
+.stamped-note {
+  font-weight: 800;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: #555048;
+}
+
+.current-stamp-row {
+  background: #fffcf8;
+}
+
+.current-stamp-row.is-stamped {
+  background: #fef4ee;
+}
+
+.stamped-date--active {
+  color: #df5831;
+  font-weight: 800;
+}
+
+.current-stamp-row.is-stamped .stamp-glow {
+  color: #059669;
+  animation: stamp-pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes stamp-pop {
+  0% { transform: scale(1.4) rotate(-6deg); opacity: 0; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* Barcode */
+.slip-barcode-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 24px;
+  padding: 12px;
+  background: #fff;
+  border: 1px dashed #ded9cf;
+  border-radius: 8px;
+}
+
+.barcode-bars {
+  display: flex;
+  align-items: flex-end;
+  height: 38px;
+  gap: 2px;
+}
+
+.barcode-stripe {
+  height: 100%;
+  background: #171614;
+}
+
+.barcode-number {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  color: #726d65;
+}
+
+/* Slip Actions */
+.slip-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.slip-stamp-btn {
+  flex: 1 1 auto;
+  background: #df5831;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 20px;
+  font-size: 0.95rem;
+  font-weight: 750;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+  box-shadow: 0 4px 14px rgba(223, 88, 49, 0.28);
+}
+
+.slip-stamp-btn:hover {
+  background: #c74823;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(223, 88, 49, 0.38);
+}
+
+.slip-stamped-feedback {
+  flex: 1 1 auto;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #065f46;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.stamp-success-icon {
+  background: #059669;
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 0.75rem;
+}
+
+.slip-done-btn {
+  background: #eeece7;
+  color: #211e1a;
+  border: 1px solid #d5cfc5;
+  border-radius: 10px;
+  padding: 14px 22px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.slip-done-btn:hover {
+  background: #171614;
+  color: #fff;
+  border-color: #171614;
+}
+
+/* --------------------------------------------------
+   Responsive Breakpoints
+   -------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .events-library-section {
+    padding: 0 16px;
+    margin-bottom: 64px;
+  }
+
+  .library-card-catalog {
+    padding: 24px 18px;
+    border-radius: 20px;
+  }
+
+  .library-header-main {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .library-stats-badge {
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .library-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .circulation-slip-card {
+    padding: 24px 18px 20px;
+  }
+
+  .slip-content-grid {
+    grid-template-columns: 1fr;
+  }
+}

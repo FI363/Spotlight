@@ -1,0 +1,481 @@
+/* ==================================================
+   Events Editorial Black Rectangular Cover Box
+   ================================================== */
+
+.events-cover-box-section {
+  width: min(100%, 1184px);
+  margin: -40px auto 64px;
+  padding: 0 32px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Master Rectangular Black Box Container */
+.events-cover-box {
+  background: radial-gradient(circle at 85% 15%, #1c1a17 0%, #0d0c0b 70%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.38), 0 1px 0 rgba(255, 255, 255, 0.08) inset;
+  overflow: hidden;
+  color: #f7f6f3;
+  position: relative;
+}
+
+/* Subtle carbon grid overlay */
+.events-cover-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------
+   Top Marquee Ticker Tape
+   -------------------------------------------------- */
+
+.cover-box-ticker-wrap {
+  display: flex;
+  align-items: center;
+  background: #080707;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  padding: 10px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.cover-box-ticker-badge {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #1e1c18;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0 20px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: #df5831;
+  z-index: 2;
+}
+
+.ticker-live-dot {
+  width: 7px;
+  height: 7px;
+  background: #df5831;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #df5831;
+  animation: ticker-pulse 1.8s infinite;
+}
+
+@keyframes ticker-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.cover-box-ticker-track {
+  display: flex;
+  white-space: nowrap;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+}
+
+.cover-box-ticker-group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  animation: cover-marquee 32s linear infinite;
+}
+
+@keyframes cover-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 24px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  color: #b3aea6;
+}
+
+.ticker-star {
+  color: #df5831;
+  font-size: 0.65rem;
+}
+
+/* --------------------------------------------------
+   Main Content Layout
+   -------------------------------------------------- */
+
+.cover-box-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.9fr);
+  align-items: center;
+  gap: clamp(24px, 4vw, 56px);
+  padding: clamp(28px, 4vw, 44px) clamp(24px, 4vw, 48px);
+  position: relative;
+  z-index: 1;
+}
+
+/* Editorial Left Column */
+.cover-box-editorial {
+  display: flex;
+  flex-direction: column;
+}
+
+.cover-box-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.cover-pill {
+  background: #df5831;
+  color: #fff;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.cover-issue {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #8b857d;
+}
+
+.cover-box-title {
+  margin: 0 0 14px;
+  color: #fff;
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+.cover-box-desc {
+  margin: 0 0 24px;
+  color: #a8a39a;
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+.cover-box-meta-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.meta-chip {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 10px;
+  padding: 8px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.meta-chip-label {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.6rem;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  color: #7a756d;
+}
+
+.meta-chip-val {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #f0ede6;
+}
+
+.meta-chip-val.highlight {
+  color: #df5831;
+}
+
+/* --------------------------------------------------
+   Right Column: Tactile Ticket Pass Card
+   -------------------------------------------------- */
+
+.cover-box-ticket-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.cover-ticket-pass {
+  position: relative;
+  background: #fdfcf8;
+  color: #171614;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 330px;
+  padding: 22px 20px 18px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Perforation Notches on sides */
+.ticket-notch {
+  position: absolute;
+  top: 58%;
+  width: 16px;
+  height: 16px;
+  background: #0d0c0b;
+  border-radius: 50%;
+  z-index: 3;
+}
+
+.ticket-notch--left {
+  left: -8px;
+}
+
+.ticket-notch--right {
+  right: -8px;
+}
+
+.ticket-pass-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed #d5cfc5;
+  padding-bottom: 8px;
+}
+
+.ticket-pass-kicker {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #8b5265;
+}
+
+.ticket-pass-id {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.65rem;
+  font-weight: 750;
+  color: #726d65;
+}
+
+.ticket-pass-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ticket-event-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #df5831;
+}
+
+.ticket-event-name {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #171614;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.ticket-event-sub {
+  font-size: 0.8rem;
+  color: #625f59;
+}
+
+.ticket-perforation {
+  padding: 4px 0;
+  position: relative;
+}
+
+.perforation-line {
+  border-top: 1.5px dashed #c9c3b8;
+  width: 100%;
+}
+
+.ticket-pass-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ticket-barcode {
+  display: flex;
+  align-items: flex-end;
+  height: 32px;
+  gap: 2px;
+}
+
+.ticket-barcode span {
+  height: 100%;
+  background: #171614;
+}
+
+.ticket-claim-btn {
+  background: #171614;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 0.82rem;
+  font-weight: 750;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s;
+  white-space: nowrap;
+}
+
+.ticket-claim-btn:hover {
+  background: #df5831;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(223, 88, 49, 0.35);
+}
+
+.ticket-claim-btn.is-claimed {
+  background: #059669;
+}
+
+.btn-check {
+  font-weight: 900;
+}
+
+/* --------------------------------------------------
+   Bottom Ambient Status Bar
+   -------------------------------------------------- */
+
+.cover-box-bottom-bar {
+  background: rgba(0, 0, 0, 0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 12px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.cover-live-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Animated soundwave bars */
+.status-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+}
+
+.status-bars span {
+  width: 2.5px;
+  background: #df5831;
+  border-radius: 1px;
+  animation: soundwave-bounce 1.2s ease-in-out infinite alternate;
+}
+
+.status-bars span:nth-child(1) { height: 40%; animation-delay: 0.1s; }
+.status-bars span:nth-child(2) { height: 85%; animation-delay: 0.3s; }
+.status-bars span:nth-child(3) { height: 60%; animation-delay: 0.5s; }
+.status-bars span:nth-child(4) { height: 100%; animation-delay: 0.2s; }
+
+@keyframes soundwave-bounce {
+  0% { transform: scaleY(0.3); }
+  100% { transform: scaleY(1); }
+}
+
+.status-text {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #8c867c;
+}
+
+.cover-attendance-stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stat-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #726d65;
+}
+
+.stat-bar {
+  width: 80px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.stat-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #df5831, #f59e0b);
+  border-radius: 999px;
+}
+
+.stat-pct {
+  font-size: 0.68rem;
+  font-weight: 750;
+  color: #df5831;
+}
+
+/* --------------------------------------------------
+   Responsive Design
+   -------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .events-cover-box-section {
+    margin-top: 0;
+    margin-bottom: 48px;
+    padding: 0 16px;
+  }
+
+  .cover-box-content {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .cover-box-ticket-wrapper {
+    justify-content: flex-start;
+  }
+
+  .cover-ticket-pass {
+    max-width: 100%;
+  }
+
+  .cover-box-bottom-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
